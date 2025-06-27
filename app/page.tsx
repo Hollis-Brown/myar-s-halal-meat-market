@@ -71,7 +71,7 @@ export default function MyarsHalalMarket() {
         transition={{ duration: 0.6 }}
         className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60"
       >
-        <div className="container flex h-16 items-center justify-between px-4">
+        <div className="container flex h-24 items-center justify-between mx-16 px-4 sm:px-6 md:px-8 lg:px-12">
           <motion.div
             className="flex items-center space-x-2"
             whileHover={{ scale: 1.05 }}
@@ -89,7 +89,7 @@ export default function MyarsHalalMarket() {
               <p className="text-xs text-green-600">Premium Halal Meats</p>
             </div>
           </motion.div>
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-16">
             {["About", "Products", "Services", "Contact"].map((item, index) => (
               <motion.div
                 key={item}
@@ -118,14 +118,14 @@ export default function MyarsHalalMarket() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-20 lg:py-32 overflow-hidden">
+        <section className="relative py-20 lg:py-26 overflow-hidden">
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-green-600/10 to-emerald-600/10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           />
-          <div className="container px-4 relative">
+          <div className="container mx-24 px-4 sm:px-6 md:px-8 lg:px-12 relative">
             <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
               <motion.div
                 className="space-y-6"
@@ -277,7 +277,7 @@ export default function MyarsHalalMarket() {
 
         {/* About Section */}
         <section id="about" className="py-20 bg-white">
-          <div className="container px-4">
+          <div className="container mx-16 px-4 sm:px-6 md:px-8 lg:px-12">
             <AnimatedSection className="text-center mb-16">
               <Badge className="bg-green-100 text-green-800 mb-4">About Myar's</Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
@@ -338,9 +338,8 @@ export default function MyarsHalalMarket() {
           </div>
         </section>
 
-        {/* Products Section */}
         <section id="products" className="py-20 bg-green-50">
-          <div className="container px-4">
+          <div className="container mx-16 px-4 sm:px-6 md:px-8 lg:px-12">
             <AnimatedSection className="text-center mb-16">
               <Badge className="bg-green-100 text-green-800 mb-4">Our Products</Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Premium Halal Meat Selection</h2>
@@ -349,7 +348,6 @@ export default function MyarsHalalMarket() {
                 needs.
               </p>
             </AnimatedSection>
-
             <motion.div
               className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
               variants={staggerContainer}
@@ -363,18 +361,21 @@ export default function MyarsHalalMarket() {
                   title: "Premium Beef",
                   desc: "Fresh cuts including ribeye, sirloin, ground beef, and more",
                   badge: "Fresh Daily",
+                  image: "https://i.imgur.com/hgs4Neh.png"
                 },
                 {
                   bg: "from-yellow-100 to-yellow-200",
                   title: "Fresh Chicken",
                   desc: "Whole chickens, breasts, thighs, wings, and ground chicken",
                   badge: "Farm Fresh",
+                  image: "https://i.imgur.com/XgLSmzJ.png"
                 },
                 {
                   bg: "from-purple-100 to-purple-200",
                   title: "Lamb & Goat",
                   desc: "Premium lamb chops, leg of lamb, and fresh goat meat",
                   badge: "Premium Cut",
+                  image: "https://i.imgur.com/FJVeJnD.png"
                 },
               ].map((product, index) => (
                 <motion.div key={index} variants={scaleIn}>
@@ -385,7 +386,7 @@ export default function MyarsHalalMarket() {
                       transition={{ duration: 0.3 }}
                     >
                       <Image
-                        src="/placeholder.svg?height=200&width=300"
+                        src={product.image}
                         alt={product.title}
                         width={300}
                         height={200}
@@ -421,7 +422,7 @@ export default function MyarsHalalMarket() {
 
         {/* Hot Food Menu Section */}
         <section className="py-20 bg-white">
-          <div className="container px-4">
+          <div className="container mx-16 px-4 sm:px-6 md:px-8 lg:px-12">
             <AnimatedSection className="text-center mb-16">
               <motion.div
                 animate={{ rotate: [0, 5, -5, 0] }}
@@ -623,7 +624,7 @@ export default function MyarsHalalMarket() {
 
         {/* Services Section */}
         <section id="services" className="py-20 bg-white">
-          <div className="container px-4">
+          <div className="container mx-16 px-4 sm:px-6 md:px-8 lg:px-12">
             <AnimatedSection className="text-center mb-16">
               <Badge className="bg-green-100 text-green-800 mb-4">Our Services</Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">More Than Just Fresh Meat</h2>
@@ -724,7 +725,7 @@ export default function MyarsHalalMarket() {
 
         {/* Contact Section */}
         <section id="contact" className="py-20 bg-green-50">
-          <div className="container px-4">
+          <div className="container mx-16 px-4 sm:px-6 md:px-8 lg:px-12">
             <AnimatedSection className="text-center mb-16">
               <Badge className="bg-green-100 text-green-800 mb-4">Visit Us</Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Find Us in Modesto</h2>
