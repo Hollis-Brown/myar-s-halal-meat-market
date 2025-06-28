@@ -1,5 +1,7 @@
 "use client"
 
+import 'swiper/css';
+import 'swiper/css/pagination';
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -82,10 +84,10 @@ export default function MyarsHalalMarket() {
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.5 }}
             >
-              M
+              <img src="https://i.imgur.com/nVGQTd0.png" alt="Business Logo" />
             </motion.div>
             <div>
-              <h1 className="text-xl font-bold text-green-800">Myar's Halal Meat Market</h1>
+              <h1 className="text-xl font-bold text-green-800">Myar's Halal Meat & Grill</h1>
               <p className="text-xs text-green-600">Premium Halal Meats</p>
             </div>
           </motion.div>
@@ -115,6 +117,81 @@ export default function MyarsHalalMarket() {
           </motion.div>
         </div>
       </motion.header>
+      {/* Clients Section */}
+      <section id="clients" className="clients section">
+        <div className="container" data-aos="fade-up" data-aos-delay="100">
+          <div className="swiper init-swiper">
+            <script type="application/json" className="swiper-config">
+              {`
+          {
+            "loop": true,
+            "speed": 600,
+            "autoplay": {
+              "delay": 2000
+            },
+            "slidesPerView": "auto",
+            "pagination": {
+              "el": ".swiper-pagination",
+              "type": "bullets",
+              "clickable": true
+            },
+            "breakpoints": {
+              "320": {
+                "slidesPerView": 2,
+                "spaceBetween": 40
+              },
+              "480": {
+                "slidesPerView": 3,
+                "spaceBetween": 60
+              },
+              "640": {
+                "slidesPerView": 4,
+                "spaceBetween": 80
+              },
+              "992": {
+                "slidesPerView": 6,
+                "spaceBetween": 120
+              }
+            }
+          }
+        `}
+            </script>
+            <div className="swiper-wrapper align-items-center">
+              <div className="swiper-slide">
+                <img src="assets/img/clients/sadaf-foods.png" className="img-fluid" alt="" />
+              </div>
+              <div className="swiper-slide">
+                <img src="assets/img/clients/macar-foods.png" className="img-fluid" alt="" />
+              </div>
+              <div className="swiper-slide">
+                <img src="assets/img/clients/ziyad.png" className="img-fluid" alt="" />
+              </div>
+              <div className="swiper-slide">
+                <img src="assets/img/clients/sera.png" className="img-fluid" alt="" />
+              </div>
+              <div className="swiper-slide">
+                <img src="assets/img/clients/ekici.png" className="img-fluid" alt="" />
+              </div>
+              <div className="swiper-slide">
+                <img src="assets/img/clients/karoun-dairies.png" className="img-fluid" alt="" />
+              </div>
+              <div className="swiper-slide">
+                <img src="assets/img/clients/arz.png" className="img-fluid" alt="" />
+              </div>
+              <div className="swiper-slide">
+                <img src="assets/img/clients/parmalat.png" className="img-fluid" alt="" />
+              </div>
+              <div className="swiper-slide">
+                <img src="assets/img/clients/anatolia.png" className="img-fluid" alt="" />
+              </div>
+              <div className="swiper-slide">
+                <img src="assets/img/clients/tadim.png" className="img-fluid" alt="" />
+              </div>
+            </div>
+            <div className="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
 
       <main className="flex-1">
         {/* Hero Section */}
@@ -243,7 +320,7 @@ export default function MyarsHalalMarket() {
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <Image
-                    src="https://i.imgur.com/Z5xCtrd.jpeg"
+                    src="https://i.imgur.com/jfy6jbq.jpeg"
                     alt="Fresh halal meat display"
                     width={500}
                     height={500}
