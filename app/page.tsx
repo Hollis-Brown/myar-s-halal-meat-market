@@ -5,12 +5,12 @@ import 'swiper/css/pagination';
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Phone, Clock, Star, Truck, Shield, Award, Users } from "lucide-react"
+import { MapPin, Phone, Clock, Star, Truck, Shield, Award, Users, ChevronUp } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 
 // Animation variants
 const fadeInUp = {
@@ -64,6 +64,17 @@ function AnimatedSection({ children, className = "", variant = fadeInUp }: any) 
 }
 
 export default function MyarsHalalMarket() {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-green-50 to-white">
       {/* Header */}
@@ -73,35 +84,35 @@ export default function MyarsHalalMarket() {
         transition={{ duration: 0.6 }}
         className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60"
       >
-        <div className="container flex h-24 items-center justify-between mx-16 px-4 sm:px-6 md:px-8 lg:px-12">
-          <motion.div
-            className="flex items-center space-x-2"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <motion.div
-              className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-600 text-white font-bold text-lg"
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
-            >
-              <img src="https://i.imgur.com/nVGQTd0.png" alt="Business Logo" />
-            </motion.div>
-            <div>
-              <h1 className="text-xl font-bold text-green-800">Myar's Halal Meat & Grill</h1>
-              <p className="text-xs text-green-600">Premium Halal Meats</p>
+        <div className="container flex h-24 items-center justify-between mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
+          {/* Logo - Moved outside animated container */}
+          <div className="flex items-center space-x-3">
+            <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-white font-bold text-lg shadow-lg border-2 border-green-200">
+              <img
+                src="https://i.imgur.com/nVGQTd0.png"
+                alt="Myar's Halal Meat Market Logo"
+                className="h-18 w-18 object-contain"
+              />
             </div>
-          </motion.div>
+            <div>
+              <h1 className="text-2xl font-bold text-green-800 leading-tight">Myar's Halal Meat & Grill</h1>
+              <p className="text-sm text-green-600 font-medium">Premium Halal Meats</p>
+            </div>
+          </div>
+
+          {/* Navigation Links */}
           <nav className="hidden md:flex items-center space-x-16">
-            {["About", "Products", "Services", "Contact"].map((item, index) => (
+            {["Home", "Products", "Menu", "Tesimonials", "About"].map((item, index) => (
               <motion.div
                 key={item}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 + 0.3 }}
+                transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 300 }}
+                whileHover={{ scale: 1.05 }}
               >
                 <Link
                   href={`#${item.toLowerCase()}`}
-                  className="text-sm font-medium hover:text-green-600 transition-colors relative group"
+                  className="text-base font-medium hover:text-green-600 transition-colors relative group"
                 >
                   {item}
                   <motion.div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 group-hover:w-full transition-all duration-300" />
@@ -109,89 +120,17 @@ export default function MyarsHalalMarket() {
               </motion.div>
             ))}
           </nav>
+
+          {/* Call Button */}
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button className="bg-green-600 hover:bg-green-700 transition-all duration-300">
+            <Button className="bg-green-600 hover:bg-green-700 transition-all duration-300 text-lg px-12 py-6">
               <Phone className="mr-2 h-4 w-4" />
-              Call Now
+              Contact Us
             </Button>
           </motion.div>
         </div>
       </motion.header>
-      {/* Clients Section */}
-      <section id="clients" className="clients section">
-        <div className="container" data-aos="fade-up" data-aos-delay="100">
-          <div className="swiper init-swiper">
-            <script type="application/json" className="swiper-config">
-              {`
-          {
-            "loop": true,
-            "speed": 600,
-            "autoplay": {
-              "delay": 2000
-            },
-            "slidesPerView": "auto",
-            "pagination": {
-              "el": ".swiper-pagination",
-              "type": "bullets",
-              "clickable": true
-            },
-            "breakpoints": {
-              "320": {
-                "slidesPerView": 2,
-                "spaceBetween": 40
-              },
-              "480": {
-                "slidesPerView": 3,
-                "spaceBetween": 60
-              },
-              "640": {
-                "slidesPerView": 4,
-                "spaceBetween": 80
-              },
-              "992": {
-                "slidesPerView": 6,
-                "spaceBetween": 120
-              }
-            }
-          }
-        `}
-            </script>
-            <div className="swiper-wrapper align-items-center">
-              <div className="swiper-slide">
-                <img src="assets/img/clients/sadaf-foods.png" className="img-fluid" alt="" />
-              </div>
-              <div className="swiper-slide">
-                <img src="assets/img/clients/macar-foods.png" className="img-fluid" alt="" />
-              </div>
-              <div className="swiper-slide">
-                <img src="assets/img/clients/ziyad.png" className="img-fluid" alt="" />
-              </div>
-              <div className="swiper-slide">
-                <img src="assets/img/clients/sera.png" className="img-fluid" alt="" />
-              </div>
-              <div className="swiper-slide">
-                <img src="assets/img/clients/ekici.png" className="img-fluid" alt="" />
-              </div>
-              <div className="swiper-slide">
-                <img src="assets/img/clients/karoun-dairies.png" className="img-fluid" alt="" />
-              </div>
-              <div className="swiper-slide">
-                <img src="assets/img/clients/arz.png" className="img-fluid" alt="" />
-              </div>
-              <div className="swiper-slide">
-                <img src="assets/img/clients/parmalat.png" className="img-fluid" alt="" />
-              </div>
-              <div className="swiper-slide">
-                <img src="assets/img/clients/anatolia.png" className="img-fluid" alt="" />
-              </div>
-              <div className="swiper-slide">
-                <img src="assets/img/clients/tadim.png" className="img-fluid" alt="" />
-              </div>
-            </div>
-            <div className="swiper-pagination"></div>
-          </div>
-        </div>
-      </section>
+
 
       <main className="flex-1">
         {/* Hero Section */}
@@ -202,7 +141,7 @@ export default function MyarsHalalMarket() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           />
-          <div className="container mx-24 px-4 sm:px-6 md:px-8 lg:px-12 relative">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 relative">
             <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
               <motion.div
                 className="space-y-6"
@@ -354,7 +293,7 @@ export default function MyarsHalalMarket() {
 
         {/* About Section */}
         <section id="about" className="py-20 bg-white">
-          <div className="container mx-16 px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
             <AnimatedSection className="text-center mb-16">
               <Badge className="bg-green-100 text-green-800 mb-4">About Myar's</Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
@@ -416,7 +355,7 @@ export default function MyarsHalalMarket() {
         </section>
 
         <section id="products" className="py-20 bg-green-50">
-          <div className="container mx-16 px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
             <AnimatedSection className="text-center mb-16">
               <Badge className="bg-green-100 text-green-800 mb-4">Our Products</Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Premium Halal Meat Selection</h2>
@@ -499,7 +438,7 @@ export default function MyarsHalalMarket() {
 
         {/* Hot Food Menu Section */}
         <section className="py-20 bg-white">
-          <div className="container mx-16 px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
             <AnimatedSection className="text-center mb-16">
               <motion.div
                 animate={{ rotate: [0, 5, -5, 0] }}
@@ -567,8 +506,8 @@ export default function MyarsHalalMarket() {
                             <Image
                               src={dish.image || "/placeholder.svg"}
                               alt={dish.name}
-                              width={80}
-                              height={80}
+                              width={240}
+                              height={240}
                               className="rounded-lg object-cover shadow-md border-2 border-green-200"
                             />
                           </motion.div>
@@ -638,8 +577,8 @@ export default function MyarsHalalMarket() {
                             <Image
                               src={dish.image || "/placeholder.svg"}
                               alt={dish.name}
-                              width={80}
-                              height={80}
+                              width={240}
+                              height={240}
                               className="rounded-lg object-cover shadow-md border-2 border-red-200"
                             />
                           </motion.div>
@@ -701,7 +640,7 @@ export default function MyarsHalalMarket() {
 
         {/* Services Section */}
         <section id="services" className="py-20 bg-white">
-          <div className="container mx-16 px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
             <AnimatedSection className="text-center mb-16">
               <Badge className="bg-green-100 text-green-800 mb-4">Our Services</Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">More Than Just Fresh Meat</h2>
@@ -802,7 +741,7 @@ export default function MyarsHalalMarket() {
 
         {/* Contact Section */}
         <section id="contact" className="py-20 bg-green-50">
-          <div className="container mx-16 px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
             <AnimatedSection className="text-center mb-16">
               <Badge className="bg-green-100 text-green-800 mb-4">Visit Us</Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Find Us in Modesto</h2>
@@ -819,12 +758,12 @@ export default function MyarsHalalMarket() {
                   </CardHeader>
                   <CardContent className="px-0 space-y-6">
                     {[
-                      { icon: MapPin, title: "Address", content: "1234 McHenry Avenue\nModesto, CA 95350" },
-                      { icon: Phone, title: "Phone", content: "(209) 555-MEAT\n(209) 555-6328" },
+                      { icon: MapPin, title: "Address", content: "2307 Oakdale Road\nModesto, CA 95355" },
+                      { icon: Phone, title: "Phone", content: "(209) 408-0064" },
                       {
                         icon: Clock,
                         title: "Hours",
-                        content: "Monday - Saturday: 8:00 AM - 8:00 PM\nSunday: 9:00 AM - 6:00 PM",
+                        content: "Sunday - Saturday: 9:00 AM - 8:00 PM",
                       },
                     ].map((info, index) => (
                       <motion.div
@@ -855,25 +794,22 @@ export default function MyarsHalalMarket() {
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="text-center">
-                    <motion.div
-                      className="w-32 h-32 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg"
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ repeat: Number.POSITIVE_INFINITY, duration: 20, ease: "linear" }}
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      <div className="text-4xl">🗺️</div>
-                    </motion.div>
-                    <h3 className="text-xl font-bold text-green-800 mb-2">Interactive Map</h3>
-                    <p className="text-gray-600 mb-4">Click to view our location on Google Maps</p>
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button className="bg-green-600 hover:bg-green-700 transition-all duration-300">
-                        Get Directions
-                      </Button>
-                    </motion.div>
+                  <div className="w-full text-center">
+                    <div className="mx-auto max-w-5xl w-full">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3156.7231479307414!2d-120.9442633240285!3d37.6993706204698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8090560502b98ac9%3A0xf273350cf3010f07!2s2307%20Oakdale%20Rd%2C%20Modesto%2C%20CA%2095355!5e0!3m2!1sen!2sus!4v1720058393457!5m2!1sen!2sus"
+                        width="100%"
+                        height="450"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      ></iframe>
+                    </div>
                   </div>
                 </motion.div>
               </AnimatedSection>
+
             </div>
           </div>
         </section>
@@ -896,7 +832,7 @@ export default function MyarsHalalMarket() {
               backgroundSize: "50px 50px",
             }}
           />
-          <div className="container px-4 text-center relative">
+          <div className="container mx-auto max-w-7xl px-4 text-center relative">
             <AnimatedSection>
               <motion.h2
                 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4"
@@ -949,7 +885,7 @@ export default function MyarsHalalMarket() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <div className="container px-4">
+        <div className="container mx-auto max-w-7xl px-4">
           <motion.div
             className="grid gap-8 md:grid-cols-4"
             variants={staggerContainer}
@@ -1011,6 +947,25 @@ export default function MyarsHalalMarket() {
           </motion.div>
         </div>
       </motion.footer>
+
+      {/* Scroll to Top Button */}
+      <motion.button
+        onClick={() => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }}
+        className="fixed bottom-6 right-6 z-50 bg-green-600 hover:bg-green-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{
+          opacity: showScrollTop ? 1 : 0,
+          scale: showScrollTop ? 1 : 0
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        <ChevronUp className="h-6 w-6" />
+      </motion.button>
     </div>
   )
 }
