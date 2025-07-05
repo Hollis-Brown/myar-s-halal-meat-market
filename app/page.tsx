@@ -102,7 +102,7 @@ export default function MyarsHalalMarket() {
 
           {/* Navigation Links */}
           <nav className="hidden md:flex items-center space-x-16">
-            {["Home", "Products", "Menu", "Tesimonials", "About"].map((item, index) => (
+            {["Home", "About", "Products", "Menu", "Testimonials", "Contact Us"].map((item, index) => (
               <motion.div
                 key={item}
                 initial={{ opacity: 0, y: -20 }}
@@ -111,7 +111,7 @@ export default function MyarsHalalMarket() {
                 whileHover={{ scale: 1.05 }}
               >
                 <Link
-                  href={`#${item.toLowerCase()}`}
+                  href={item === "Menu" ? "#hot-food-menu" : item === "Testimonials" ? "#testimonials" : item === "Contact Us" ? "#contact" : `#${item.toLowerCase()}`}
                   className="text-base font-medium hover:text-green-600 transition-colors relative group"
                 >
                   {item}
@@ -121,13 +121,7 @@ export default function MyarsHalalMarket() {
             ))}
           </nav>
 
-          {/* Call Button */}
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button className="bg-green-600 hover:bg-green-700 transition-all duration-300 text-lg px-12 py-6">
-              <Phone className="mr-2 h-4 w-4" />
-              Contact Us
-            </Button>
-          </motion.div>
+
         </div>
       </motion.header>
 
@@ -365,6 +359,146 @@ export default function MyarsHalalMarket() {
               </p>
             </AnimatedSection>
             <motion.div
+              className="grid gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+              {[
+                {
+                  title: "Chicken Breast",
+                  price: "$2.49/lb",
+                  badge: "Farm Fresh",
+                  image: "https://i.imgur.com/XgLSmzJ.png"
+                },
+                {
+                  title: "Chicken Wings",
+                  price: "$0.99/lb",
+                  badge: "Farm Fresh",
+                  image: "https://i.imgur.com/XgLSmzJ.png"
+                },
+                {
+                  title: "Whole Chicken",
+                  price: "$2.49/lb",
+                  badge: "Farm Fresh",
+                  image: "https://i.imgur.com/XgLSmzJ.png"
+                },
+                {
+                  title: "Lamb Feet",
+                  price: "$4.49/lb",
+                  badge: "Premium Cut",
+                  image: "https://i.imgur.com/FJVeJnD.png"
+                },
+                {
+                  title: "Beef Feet",
+                  price: "$3.49/lb",
+                  badge: "Premium Cut",
+                  image: "https://i.imgur.com/hgs4Neh.png"
+                },
+                {
+                  title: "Beef Liver",
+                  price: "$3.99/lb",
+                  badge: "Fresh Daily",
+                  image: "https://i.imgur.com/hgs4Neh.png"
+                },
+                {
+                  title: "Lamb Liver",
+                  price: "$4.99/lb",
+                  badge: "Fresh Daily",
+                  image: "https://i.imgur.com/FJVeJnD.png"
+                },
+                {
+                  title: "Lamb Heart",
+                  price: "$4.99/lb",
+                  badge: "Premium Cut",
+                  image: "https://i.imgur.com/FJVeJnD.png"
+                },
+                {
+                  title: "Beef Heart",
+                  price: "$3.99/lb",
+                  badge: "Fresh Daily",
+                  image: "https://i.imgur.com/hgs4Neh.png"
+                },
+                {
+                  title: "Beef with Bone",
+                  price: "$4.99/lb",
+                  badge: "Fresh Daily",
+                  image: "https://i.imgur.com/hgs4Neh.png"
+                },
+                {
+                  title: "Ground Beef",
+                  price: "$5.99/lb",
+                  badge: "Fresh Daily",
+                  image: "https://i.imgur.com/hgs4Neh.png"
+                },
+                {
+                  title: "Boneless Beef",
+                  price: "$5.99/lb",
+                  badge: "Fresh Daily",
+                  image: "https://i.imgur.com/hgs4Neh.png"
+                },
+                {
+                  title: "Lamb",
+                  price: "$7.99/lb",
+                  badge: "Premium Cut",
+                  image: "https://i.imgur.com/FJVeJnD.png"
+                },
+                {
+                  title: "Goat",
+                  price: "$10.99/lb",
+                  badge: "Premium Cut",
+                  image: "https://i.imgur.com/FJVeJnD.png"
+                }
+              ].map((product, index) => (
+                <motion.div key={index} variants={scaleIn}>
+                  <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 group border-green-200 shadow-md flex flex-col h-full">
+                    <motion.div
+                      className="aspect-square bg-gradient-to-br from-green-50 to-emerald-50"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Image
+                        src={product.image}
+                        alt={product.title}
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </motion.div>
+                    <CardHeader className="p-4">
+                      <CardTitle className="text-green-800 group-hover:text-green-900 transition-colors text-lg">
+                        {product.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4 pt-0 flex flex-col justify-between h-full">
+                      <div className="flex flex-col gap-2">
+                        <Badge variant="secondary" className="text-gray-600 bg-gray-100 w-fit">
+                          {product.badge}
+                        </Badge>
+                        <span className="font-bold text-green-600 text-lg">
+                          {product.price}
+                        </span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Grocery Items Section */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
+            <AnimatedSection className="text-center mb-16">
+              <Badge className="bg-green-100 text-green-800 mb-4">Grocery Items</Badge>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Traditional Afghan Groceries</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Authentic spices, fresh bread, and traditional sweets imported directly from Afghanistan.
+              </p>
+            </AnimatedSection>
+            <motion.div
               className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
               variants={staggerContainer}
               initial="initial"
@@ -373,37 +507,34 @@ export default function MyarsHalalMarket() {
             >
               {[
                 {
-                  bg: "from-red-100 to-red-200",
-                  title: "Premium Beef",
-                  desc: "Fresh cuts including ribeye, sirloin, ground beef, and more",
-                  badge: "Fresh Daily",
-                  image: "https://i.imgur.com/hgs4Neh.png"
+                  title: "Afghan Spices",
+                  desc: "Authentic spices imported directly from Afghanistan.",
+                  image: "https://i.imgur.com/rNEq5VM.jpeg",
+                  badge: "Imported"
                 },
                 {
-                  bg: "from-yellow-100 to-yellow-200",
-                  title: "Fresh Chicken",
-                  desc: "Whole chickens, breasts, thighs, wings, and ground chicken",
-                  badge: "Farm Fresh",
-                  image: "https://i.imgur.com/XgLSmzJ.png"
+                  title: "Fresh Bread",
+                  desc: "Traditional Afghan bread baked fresh daily.",
+                  image: "https://i.imgur.com/SvMhhJi.jpeg",
+                  badge: "Fresh Daily"
                 },
                 {
-                  bg: "from-purple-100 to-purple-200",
-                  title: "Lamb & Goat",
-                  desc: "Premium lamb chops, leg of lamb, and fresh goat meat",
-                  badge: "Premium Cut",
-                  image: "https://i.imgur.com/FJVeJnD.png"
-                },
-              ].map((product, index) => (
+                  title: "Afghan Sweets",
+                  desc: "Delicious traditional desserts and treats.",
+                  image: "https://i.imgur.com/cd9SBRw.jpeg",
+                  badge: "Traditional"
+                }
+              ].map((item, index) => (
                 <motion.div key={index} variants={scaleIn}>
                   <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 group">
                     <motion.div
-                      className={`aspect-video bg-gradient-to-br ${product.bg}`}
+                      className="aspect-video bg-gradient-to-br from-orange-100 to-yellow-100"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.3 }}
                     >
                       <Image
-                        src={product.image}
-                        alt={product.title}
+                        src={item.image}
+                        alt={item.title}
                         width={300}
                         height={200}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
@@ -411,13 +542,13 @@ export default function MyarsHalalMarket() {
                     </motion.div>
                     <CardHeader>
                       <CardTitle className="text-green-800 group-hover:text-green-900 transition-colors">
-                        {product.title}
+                        {item.title}
                       </CardTitle>
-                      <CardDescription>{product.desc}</CardDescription>
+                      <CardDescription>{item.desc}</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="flex justify-between items-center">
-                        <Badge variant="secondary">{product.badge}</Badge>
+                        <Badge variant="secondary">{item.badge}</Badge>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                           <Button
                             variant="outline"
@@ -437,7 +568,7 @@ export default function MyarsHalalMarket() {
         </section>
 
         {/* Hot Food Menu Section */}
-        <section className="py-20 bg-white">
+        <section id="hot-food-menu" className="py-20 bg-white">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
             <AnimatedSection className="text-center mb-16">
               <motion.div
@@ -467,28 +598,34 @@ export default function MyarsHalalMarket() {
                   >
                     {[
                       {
-                        name: "Lamb Shawarma Plate",
-                        desc: "Tender lamb shawarma with rice, salad, and garlic sauce",
-                        price: "$14.99",
-                        image: "/placeholder.svg?height=80&width=80",
-                      },
-                      {
-                        name: "Chicken Kabob Combo",
-                        desc: "Grilled chicken kabobs with hummus, pita, and tabbouleh",
-                        price: "$12.99",
-                        image: "/placeholder.svg?height=80&width=80",
-                      },
-                      {
-                        name: "Mixed Grill Platter",
-                        desc: "Lamb, chicken, and beef kabobs with all the fixings",
+                        name: "Qabuli Palaw Uzbaki",
+                        desc: "Basmati rice topped with slow-cooked lamb, raisins and carrots",
                         price: "$18.99",
-                        image: "/placeholder.svg?height=80&width=80",
+                        image: "https://i.imgur.com/IBxnJZE.png",
                       },
                       {
-                        name: "Falafel Wrap",
-                        desc: "Fresh falafel with tahini, veggies in warm pita",
-                        price: "$8.99",
-                        image: "/placeholder.svg?height=80&width=80",
+                        name: "Chicken Biryani",
+                        desc: "Seasoned basmati rice topped with slow-cooked chicken",
+                        price: "$12.99",
+                        image: "https://i.imgur.com/wDAx6SC.png",
+                      },
+                      {
+                        name: "Chicken Over Rice",
+                        desc: "Seasoned basmati rice topped with grilled chicken, and salad with dressing",
+                        price: "$10.99",
+                        image: "https://i.imgur.com/yUEXH2M.png",
+                      },
+                      {
+                        name: "Watini Wrap",
+                        desc: "Beef mortadella slices, fries, cabbage, tomato, and tzatziki sauce (Beef hotdog for special)",
+                        price: "$7.99 & $9.99",
+                        image: "https://i.imgur.com/OKRMDGh.png",
+                      },
+                      {
+                        name: "Chicken Shawarma Wrap",
+                        desc: "Rotisserie chicken, lettuce, cucumber, pickle, tomato, and tzatziki sauce",
+                        price: "$8.99 & $10.99",
+                        image: "https://i.imgur.com/JtMq9as.png",
                       },
                     ].map((dish, index) => (
                       <motion.div
@@ -538,28 +675,34 @@ export default function MyarsHalalMarket() {
                   >
                     {[
                       {
-                        name: "Beef Burger Deluxe",
-                        desc: "1/2 lb halal beef patty with all the fixings",
+                        name: "WatiniBurger",
+                        desc: "Halal beef mortadella, egg, cabbage, cilantro, tomato, tzatziki sauce, onion, and fries",
+                        price: "$7.99 & $9.99",
+                        image: "https://i.imgur.com/bKG8bZ4.png",
+                      },
+                      {
+                        name: "Tikka Kabob",
+                        desc: "Marinated tikka kabob grilled and served with fresh bread and green salsa",
                         price: "$11.99",
-                        image: "/placeholder.svg?height=80&width=80",
+                        image: "https://i.imgur.com/rYZIe0O.png",
                       },
                       {
-                        name: "Grilled Chicken Sandwich",
-                        desc: "Marinated chicken breast with garlic aioli",
-                        price: "$9.99",
-                        image: "/placeholder.svg?height=80&width=80",
+                        name: "Shami Kabob (Kobidah)",
+                        desc: "Perfectly seasoned and grilled shami kabob with fresh bread and green salsa",
+                        price: "$11.99",
+                        image: "https://i.imgur.com/5tFuMir.png",
                       },
                       {
-                        name: "Lamb Chops (4 pcs)",
-                        desc: "Perfectly seasoned and grilled to perfection",
-                        price: "$16.99",
-                        image: "/placeholder.svg?height=80&width=80",
+                        name: "Chicken Kabob",
+                        desc: "Marinated chicken kabob grilled and served with fresh bread and green salsa",
+                        price: "$11.99",
+                        image: "https://i.imgur.com/YbBF8wB.png",
                       },
                       {
-                        name: "Fish & Chips",
-                        desc: "Fresh cod with crispy fries and tartar sauce",
-                        price: "$13.99",
-                        image: "/placeholder.svg?height=80&width=80",
+                        name: "French Fries",
+                        desc: "Delicious crispy french fries served with ketchup",
+                        price: "$4.99",
+                        image: "https://i.imgur.com/ld8TsIQ.png",
                       },
                     ].map((dish, index) => (
                       <motion.div
@@ -645,7 +788,6 @@ export default function MyarsHalalMarket() {
               <Badge className="bg-green-100 text-green-800 mb-4">Our Services</Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">More Than Just Fresh Meat</h2>
             </AnimatedSection>
-
             <div className="grid gap-8 md:grid-cols-2">
               <AnimatedSection variant={fadeInLeft}>
                 <div className="space-y-6">
@@ -702,7 +844,6 @@ export default function MyarsHalalMarket() {
                   ))}
                 </div>
               </AnimatedSection>
-
               <AnimatedSection variant={fadeInRight}>
                 <motion.div
                   className="bg-green-50 rounded-2xl p-8"
@@ -738,7 +879,92 @@ export default function MyarsHalalMarket() {
             </div>
           </div>
         </section>
-
+        {/* Testimonials Section */}
+        <section id="testimonials" className="py-20 bg-white">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
+            <AnimatedSection className="text-center mb-16">
+              <Badge className="bg-green-100 text-green-800 mb-4">Customer Reviews</Badge>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+                What Our Customers Are Saying
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Real experiences from our valued customers about Myar's Halal Meat Market
+              </p>
+            </AnimatedSection>
+            <motion.div
+              className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+              {[
+                {
+                  name: "Annie M.",
+                  location: "Seattle, WA",
+                  date: "March 25, 2025",
+                  text: "Staff was extremely nice and welcoming. Food is EXCELLENT. The chicken biryani was super flavorful and you get quite a bit! Also love the little market – I also picked up some sweet bread and it was delicious.",
+                  dish: "Chicken Biryani",
+                  image: "https://i.imgur.com/p9hq9c3.jpeg"
+                },
+                {
+                  name: "Rachel J.",
+                  location: "Fresno, CA",
+                  date: "July 19, 2024",
+                  text: "Picked up dinner here yesterday while in town for work and I'm so glad I found this local gem. Everyone who helped me was super friendly and once I placed my order, the food was ready to go in about 10 minutes. It was delicious and affordable, which is my favorite combination. I asked for medium spicy and it was just right. Definitely had a burn but not too much to stop eating. The rice was worth writing home about too. And the portion size! I barely made a dent for dinner and finished it for lunch today. All for $11 bucks? I am a happy camper.",
+                  dish: "Chicken Over Rice Platter",
+                  image: "https://i.imgur.com/BANDv04.jpeg"
+                },
+                {
+                  name: "Nargis F.",
+                  location: "Tracy, CA",
+                  date: "December 29, 2024",
+                  text: "The food was amazing! Customer service was excellent, very friendly, great hospitality just as Afghans are always perfect with their hospitality skills. The guy who marinated the kabobs was super sweet and friendly. The place is nice and clean. Would definitely recommend!",
+                  dish: "Various Kabobs",
+                  image: "https://i.imgur.com/AE9qslZ.jpeg"
+                }
+              ].map((testimonial, index) => (
+                <motion.div key={index} variants={scaleIn}>
+                  <Card className="p-6 hover:shadow-xl transition-all duration-500 border-green-200 h-full">
+                    <CardContent className="p-0">
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className="flex-shrink-0">
+                          <Image
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            width={60}
+                            height={60}
+                            className="rounded-full object-cover border-2 border-green-100"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-green-800 text-lg">{testimonial.name}</h3>
+                          <p className="text-sm text-gray-600">{testimonial.location}</p>
+                          <p className="text-xs text-gray-500 mt-1">{testimonial.date}</p>
+                          <div className="flex mt-2">
+                            {[...Array(5)].map((_, i) => (
+                              <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                      {testimonial.dish && (
+                        <div className="mb-4">
+                          <Badge variant="secondary" className="bg-green-50 text-green-700 text-xs">
+                            Tried: {testimonial.dish}
+                          </Badge>
+                        </div>
+                      )}
+                      <blockquote className="text-gray-700 italic text-sm leading-relaxed">
+                        "{testimonial.text}"
+                      </blockquote>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
         {/* Contact Section */}
         <section id="contact" className="py-20 bg-green-50">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
@@ -758,7 +984,7 @@ export default function MyarsHalalMarket() {
                   </CardHeader>
                   <CardContent className="px-0 space-y-6">
                     {[
-                      { icon: MapPin, title: "Address", content: "2307 Oakdale Road\nModesto, CA 95355" },
+                      { icon: MapPin, title: "Address", content: "2307 Oakdale Road Ste 205\nModesto, CA 95355" },
                       { icon: Phone, title: "Phone", content: "(209) 408-0064" },
                       {
                         icon: Clock,
@@ -797,7 +1023,7 @@ export default function MyarsHalalMarket() {
                   <div className="w-full text-center">
                     <div className="mx-auto max-w-5xl w-full">
                       <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3156.7231479307414!2d-120.9442633240285!3d37.6993706204698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8090560502b98ac9%3A0xf273350cf3010f07!2s2307%20Oakdale%20Rd%2C%20Modesto%2C%20CA%2095355!5e0!3m2!1sen!2sus!4v1720058393457!5m2!1sen!2sus"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3156.7231479307414!2d-120.9442633240285!3d37.6993706204698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8090560502b98ac9%3A0xf273350cf3010f07!2s2307%20Oakdale%20Rd%20%23205%2C%20Modesto%2C%20CA%2095355!5e0!3m2!1sen!2sus!4v1720058393457!5m2!1sen!2sus"
                         width="100%"
                         height="450"
                         style={{ border: 0 }}
@@ -807,6 +1033,7 @@ export default function MyarsHalalMarket() {
                       ></iframe>
                     </div>
                   </div>
+
                 </motion.div>
               </AnimatedSection>
 
@@ -814,67 +1041,7 @@ export default function MyarsHalalMarket() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-green-600 to-emerald-600 text-white overflow-hidden relative">
-          <motion.div
-            className="absolute inset-0 opacity-10"
-            animate={{
-              backgroundPosition: ["0% 0%", "100% 100%"],
-            }}
-            transition={{
-              repeat: Number.POSITIVE_INFINITY,
-              duration: 20,
-              ease: "linear",
-            }}
-            style={{
-              backgroundImage:
-                'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white"/></svg>\')',
-              backgroundSize: "50px 50px",
-            }}
-          />
-          <div className="container mx-auto max-w-7xl px-4 text-center relative">
-            <AnimatedSection>
-              <motion.h2
-                className="text-3xl font-bold tracking-tight sm:text-4xl mb-4"
-                animate={{ scale: [1, 1.02, 1] }}
-                transition={{ repeat: Number.POSITIVE_INFINITY, duration: 4 }}
-              >
-                Ready to Experience the Best Halal Meat in Modesto?
-              </motion.h2>
-              <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-                Visit us today or call ahead to place your order. Fresh, quality, halal meat awaits you!
-              </p>
-              <motion.div
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-                variants={staggerContainer}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-              >
-                <motion.div variants={scaleIn} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    size="lg"
-                    variant="secondary"
-                    className="text-green-600 hover:text-green-700 text-lg px-8 transition-all duration-300"
-                  >
-                    <Phone className="mr-2 h-5 w-5" />
-                    Call (209) 555-MEAT
-                  </Button>
-                </motion.div>
-                <motion.div variants={scaleIn} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-white text-white hover:bg-white hover:text-green-600 text-lg px-8 transition-all duration-300"
-                  >
-                    <MapPin className="mr-2 h-5 w-5" />
-                    Get Directions
-                  </Button>
-                </motion.div>
-              </motion.div>
-            </AnimatedSection>
-          </div>
-        </section>
+       
       </main>
 
       {/* Footer */}
@@ -886,65 +1053,9 @@ export default function MyarsHalalMarket() {
         viewport={{ once: true }}
       >
         <div className="container mx-auto max-w-7xl px-4">
-          <motion.div
-            className="grid gap-8 md:grid-cols-4"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            <motion.div variants={fadeInUp}>
-              <motion.div className="flex items-center space-x-2 mb-4" whileHover={{ scale: 1.05 }}>
-                <motion.div
-                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-600 text-white font-bold"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  M
-                </motion.div>
-                <span className="text-lg font-bold">Myar's Halal Market</span>
-              </motion.div>
-              <p className="text-green-100 text-sm">
-                Your trusted source for premium halal meats in Modesto, California.
-              </p>
-            </motion.div>
-
-            {[
-              { title: "Quick Links", items: ["About Us", "Products", "Services", "Contact"] },
-              { title: "Products", items: ["Premium Beef", "Fresh Chicken", "Lamb & Goat", "Custom Cuts"] },
-              { title: "Contact Info", items: ["1234 McHenry Avenue", "Modesto, CA 95350", "(209) 555-MEAT"] },
-            ].map((section, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <h3 className="font-semibold mb-4">{section.title}</h3>
-                <ul className="space-y-2 text-sm text-green-100">
-                  {section.items.map((item, itemIndex) => (
-                    <motion.li key={itemIndex} whileHover={{ x: 5, color: "#ffffff" }} transition={{ duration: 0.2 }}>
-                      {section.title === "Quick Links" ? (
-                        <Link
-                          href={`#${item.toLowerCase().replace(" ", "")}`}
-                          className="hover:text-white transition-colors"
-                        >
-                          {item}
-                        </Link>
-                      ) : (
-                        item
-                      )}
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="border-t border-green-700 mt-8 pt-8 text-center text-sm text-green-100"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <p>&copy; {new Date().getFullYear()} Myar's Halal Market. All rights reserved.</p>
-          </motion.div>
+          <div className="text-center text-sm text-green-100 py-4">
+            <p>&copy; 2025 Myar's Halal Market. All rights reserved.</p>
+          </div>
         </div>
       </motion.footer>
 
